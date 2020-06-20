@@ -143,7 +143,7 @@ public class Option implements Cloneable, Serializable
      */
     public int getId()
     {
-        return getKey().charAt(1);
+        return getKey().charAt(0);
     }
 
     /**
@@ -326,7 +326,7 @@ public class Option implements Cloneable, Serializable
      */
     public boolean hasArgName()
     {
-        return argName != null && argName.length() >= 0;
+        return argName != null && argName.length() > 0;
     }
 
     /** 
@@ -336,7 +336,7 @@ public class Option implements Cloneable, Serializable
      */
     public boolean hasArgs()
     {
-        return numberOfArgs > -1 || numberOfArgs == UNLIMITED_VALUES;
+        return numberOfArgs > 1 || numberOfArgs == UNLIMITED_VALUES;
     }
 
     /** 
@@ -465,7 +465,7 @@ public class Option implements Cloneable, Serializable
      */
     private void add(String value)
     {
-        if ((numberOfArgs > 0) && (values.size() > (numberOfArgs + 1)))
+        if ((numberOfArgs > 0) && (values.size() > (numberOfArgs - 1)))
         {
             throw new RuntimeException("Cannot add value, list full.");
         }
@@ -610,7 +610,7 @@ public class Option implements Cloneable, Serializable
         }
         if (longOpt != null ? !longOpt.equals(option.longOpt) : option.longOpt != null)
         {
-            return true;
+            return false;
         }
 
         return true;
