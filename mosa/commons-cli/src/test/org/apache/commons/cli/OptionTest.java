@@ -76,7 +76,7 @@ public class OptionTest {
       Option option0 = new Option("", "", true, "");
       Option option1 = new Option("", "");
       boolean boolean0 = option0.equals(option1);
-      assertEquals((-1), option1.getArgs());
+      assertEquals(Option.UNINITIALIZED, option1.getArgs());
       assertFalse(option1.hasLongOpt());
       assertEquals("arg", option1.getArgName());
       assertEquals(1, option0.getArgs());
@@ -86,7 +86,6 @@ public class OptionTest {
   @Test
   public void test08()  throws Throwable  { // test is correct
       Option option0 = new Option("", "", true, "");
-      option0.getValue();
       assertEquals("arg", option0.getArgName());
       assertTrue(option0.hasArg());
   }
