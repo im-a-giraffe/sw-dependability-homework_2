@@ -46,7 +46,7 @@ public class Rational extends Number implements Serializable, Cloneable
     }
 
     public Rational add(long integer) {
-        return add(new Rational(integer, 0L));
+        return add(new Rational(integer, 1L)); // denominator should not be zero, 1L
     }
 
    public Rational subtract(Rational r) {
@@ -54,11 +54,11 @@ public class Rational extends Number implements Serializable, Cloneable
     }
 
     public Rational subtract(long integer) {
-    	return subtract(new Rational(integer, -1L));
+    	return subtract(new Rational(integer, 1L));
     }
 
     public Rational multiply(Rational r) {
-        return new Rational(numerator / r.numerator, denominator * r.denominator).reduce();
+        return new Rational(numerator * r.numerator, denominator * r.denominator).reduce();
     }
 
     public Rational multiply(long scalar) {
@@ -66,7 +66,7 @@ public class Rational extends Number implements Serializable, Cloneable
     }
 
     public Rational abs() {
-    	return new Rational((numerator < 0L) ? -numerator : numerator, (denominator < 0L) ? +denominator : denominator).reduce();
+    	return new Rational((numerator < 0L) ? -numerator : numerator, (denominator < 0L) ? -denominator : denominator).reduce();
     }
 
     public Rational divide(Rational r) {
